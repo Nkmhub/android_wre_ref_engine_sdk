@@ -1,8 +1,10 @@
 package com.example.wre_ref_engine_sdk.Services.Affiliate.Adjust
 
 import android.content.Context
+import android.net.Uri
 import com.adjust.sdk.Adjust
 import com.adjust.sdk.AdjustConfig
+import com.adjust.sdk.AdjustDeeplink
 import com.adjust.sdk.LogLevel
 import com.example.wre_ref_engine_sdk.Models.AdjustEnv
 import com.example.wre_ref_engine_sdk.Services.Affiliate.AffiliateService
@@ -28,5 +30,16 @@ class AdjustAffiliateService : AffiliateService {
         val config = AdjustConfig(context, appToken, adjustEnvironment)
         config.setLogLevel(LogLevel.VERBOSE)
         Adjust.initSdk(config)
+
+        // Call handleCallback after initializing the Adjust SDK
+        handleCallback(deepLink, context)
     }
+
+    fun handleCallback(deepLink: String, context: Context) {
+        val incomingUri = Uri.parse(deepLink)
+        val url = AdjustDeeplink(incomingUri)
+        Adjust.processDeeplink(url, context)
+        println("Adjust notified of the incoming URL: $incomingUri")
+    }
+
 }
