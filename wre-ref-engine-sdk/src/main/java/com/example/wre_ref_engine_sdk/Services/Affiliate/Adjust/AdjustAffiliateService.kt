@@ -35,7 +35,7 @@ class AdjustAffiliateService : AffiliateService {
         handleCallback(deepLink, context)
     }
 
-    fun handleCallback(deepLink: String, context: Context) {
+    private fun handleCallback(deepLink: String, context: Context) {
         val incomingUri = Uri.parse(deepLink)
         val url = AdjustDeeplink(incomingUri)
         Adjust.processDeeplink(url, context)
