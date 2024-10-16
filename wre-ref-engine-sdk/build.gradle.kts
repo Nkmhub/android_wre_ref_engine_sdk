@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.wre_ref_engine_sdk"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 21
@@ -24,8 +24,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_1
+        targetCompatibility = JavaVersion.VERSION_1_1
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -50,6 +50,7 @@ publishing {
     repositories {
         maven {
             url = uri("${rootProject.buildDir}/repo")
+            maven("https://jitpack.io")
         }
     }
 }
@@ -68,4 +69,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    implementation("com.github.Nkmhub:android_wre_ref_engine_sdk:1.0.0")
 }
